@@ -127,6 +127,42 @@ app.post('/api/send-summary', async (req, res) => {
   }
 });
 
+// Add endpoint to trigger daily summary
+app.post('/api/trigger-summary', async (req, res) => {
+  try {
+    console.log('Triggering daily summary...');
+    const topicsArray = Array.from(topics.values());
+    const topTopics = topicsArray
+      .sort((a, b) => b.messageCount - a.messageCount)
+      .slice(0, 3)
+      .map(t => ({ name: t.name, messageCount: t.messageCount }));
+
+    const activeUsers = new Set();
+    for (const msgs of messages.values()) {
+      msgs.forEach(m => activeUsers.add(m.sessionId));
+    }
+
+    const summary = {
+      totalMessages: dailyStats.messages,
+      totalTopics: dailyStats.topics,
+      totalReports: dailyStats.reports,
+      topTopics,
+      activeUsers: activeUsers.size
+    };
+
+    await sendDailySummaryEmail(summary);
+    console.log('Daily summary sent successfully');
+
+    // Reset daily stats after sending
+    dailyStats = { messages: 0, topics: 0, reports: 0, date: new Date().toDateString() };
+
+    res.status(200).json({ success: true, message: 'Daily summary triggered successfully' });
+  } catch (error) {
+    console.error('Error triggering daily summary:', error);
+    res.status(500).json({ success: false, error: 'Failed to trigger daily summary' });
+  }
+});
+
 // API: Get current stats (for debugging)
 app.get('/api/stats', (req, res) => {
   const topicsArray = Array.from(topics.values());
