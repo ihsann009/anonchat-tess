@@ -1,0 +1,26 @@
+{
+  "name": "anonymous-chat-app",
+  "version": "1.0.0",
+  "description": "Anonymous chat application with admin feedback and daily summary",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "keywords": ["chat", "anonymous", "socket.io", "express"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1",
+    "uuid": "^9.0.0",
+    "nodemailer": "^6.9.1",
+    "googleapis": "^118.0.0",
+    "node-cron": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

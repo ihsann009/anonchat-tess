@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container chat-container">
+    <header class="header">
+      <div class="header-left">
+        <a href="/topics.html" class="back-btn">Kembali</a>
+        <div>
+          <h1 id="topicName">Memuat...</h1>
+          <p id="topicDescription" class="topic-description"></p>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-danger" onclick="showReportModal()">Laporkan</button>
+    </header>
+
+    <div class="chat-wrapper">
+      <div id="messagesList" class="messages-list">
+        <div class="loading">Menghubungkan...</div>
+      </div>
+
+      <div id="typingIndicator" class="typing-indicator" style="display: none;">
+        Seseorang sedang mengetik...
+      </div>
+
+      <div class="message-input-wrapper">
+        <textarea 
+          id="messageInput" 
+          placeholder="Ketik pesan..." 
+          rows="1"
+          maxlength="1000"
+        ></textarea>
+        <button id="sendBtn" class="btn btn-primary" onclick="sendMessage()">Kirim</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p><span id="sessionId"></span></p>
+    </footer>
+  </div>
+
+  <!-- Report Modal -->
+  <div id="reportModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Laporkan Topik</h3>
+        <button class="close-btn" onclick="hideReportModal()">&times;</button>
+      </div>
+      <form id="reportForm">
+        <div class="form-group">
+          <label for="reportReason">Alasan</label>
+          <textarea id="reportReason" rows="4" required maxlength="500" placeholder="Kenapa kamu melaporkan ini?"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="hideReportModal()">Batal</button>
+          <button type="submit" class="btn btn-danger">Kirim</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topik</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Chat Anonim</h1>
+      <nav class="nav">
+        <a href="/">Beranda</a>
+        <a href="/topics.html" class="active">Topik</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="page-header">
+        <h2>Topik</h2>
+        <button class="btn btn-primary" onclick="showCreateTopicModal()">Buat Topik</button>
+      </div>
+
+      <div id="topicsList" class="topics-list">
+        <div class="loading">Memuat...</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p><span id="sessionId"></span></p>
+    </footer>
+  </div>
+
+  <!-- Create Topic Modal -->
+  <div id="createTopicModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Buat Topik</h3>
+        <button class="close-btn" onclick="hideCreateTopicModal()">&times;</button>
+      </div>
+      <form id="createTopicForm">
+        <div class="form-group">
+          <label for="topicName">Nama Topik</label>
+          <input type="text" id="topicName" required maxlength="100" placeholder="Masukkan nama topik">
+        </div>
+        <div class="form-group">
+          <label for="topicDescription">Deskripsi</label>
+          <textarea id="topicDescription" rows="3" maxlength="500" placeholder="Opsional"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="hideCreateTopicModal()">Batal</button>
+          <button type="submit" class="btn btn-primary">Buat</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
