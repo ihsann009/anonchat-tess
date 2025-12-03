@@ -6,5 +6,5 @@ npm-debug.log
 README.md
 .vscode
 .idea
-*.log
+.log
 .DS_Store
